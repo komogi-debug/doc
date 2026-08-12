@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>公文小老師｜行政新手助手</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">ADMIN STARTER KIT · MVP</p>
+        <h1>公文小老師</h1>
+        <p class="subtitle">把看不懂的公文，整理成「我現在要做什麼」。</p>
+      </div>
+      <div class="status"><span></span> 本機輔助分析</div>
+    </header>
+
+    <section class="hero-grid">
+      <section class="panel input-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="kicker">STEP 01</p>
+            <h2>貼上來文</h2>
+          </div>
+          <button id="sampleBtn" class="button secondary">載入示例</button>
+        </div>
+        <textarea id="documentText" placeholder="請貼上公文內容，例如發文機關、發文字號、主旨、說明、附件……"></textarea>
+        <div class="input-footer">
+          <label class="file-button">
+            匯入純文字
+            <input id="fileInput" type="file" accept=".txt,.md" />
+          </label>
+          <span class="hint">目前支援貼上文字或 .txt／.md；PDF、Word、OCR 會在下一版加入。</span>
+        </div>
+        <label class="context-label" for="contextText">我的補充情境（選填）</label>
+        <input id="contextText" class="context-input" placeholder="例如：我是第一次承辦，主管希望我先提出兩種處理方向。" />
+        <button id="analyzeBtn" class="button primary">開始解讀 <span>→</span></button>
+        <p id="errorBox" class="error" hidden></p>
+      </section>
+
+      <aside class="panel guide-panel">
+        <p class="kicker">你會得到</p>
+        <div class="guide-item"><span class="guide-icon">01</span><div><strong>白話摘要</strong><small>知道對方到底要什麼</small></div></div>
+        <div class="guide-item"><span class="guide-icon">02</span><div><strong>待辦與期限</strong><small>知道下一步該找誰、做什麼</small></div></div>
+        <div class="guide-item"><span class="guide-icon">03</span><div><strong>回覆草稿</strong><small>提供可交給主管修改的骨架</small></div></div>
+        <div class="guide-item"><span class="guide-icon">04</span><div><strong>風險提醒</strong><small>標出不能直接猜的地方</small></div></div>
+        <div class="guardrail"><strong>請記得</strong><br />這是行政輔助工具，不會代替承辦人判斷，也不會自動發文。</div>
+      </aside>
+    </section>
+
+    <section id="result" class="results" hidden>
+      <div class="result-head">
+        <div><p class="kicker">STEP 02 · ANALYSIS</p><h2>這份公文在說什麼？</h2></div>
+        <button id="newBtn" class="button secondary">重新分析</button>
+      </div>
+
+      <div class="summary-card">
+        <div class="summary-mark">✦</div>
+        <div><p id="plainLanguage" class="plain-language"></p><p id="summary" class="summary"></p></div>
+      </div>
+
+      <div id="metadata" class="metadata"></div>
+      <div class="content-grid">
+        <section class="result-card"><div class="card-title"><span class="number">A</span><h3>對方要求什麼</h3></div><div id="asks"></div></section>
+        <section class="result-card"><div class="card-title"><span class="number">B</span><h3>你接下來要做什麼</h3></div><div id="tasks"></div></section>
+        <section class="result-card wide"><div class="card-title"><span class="number">C</span><h3>建議回覆草稿</h3><span class="small-note">請先補齊 ○○○ 再送主管</span></div><div id="replies" class="replies"></div></section>
+        <section class="result-card"><div class="card-title"><span class="number">D</span><h3>先問清楚</h3></div><div id="questions"></div></section>
+        <section class="result-card"><div class="card-title"><span class="number warning">!</span><h3>風險與人工確認</h3></div><div id="risks"></div></section>
+      </div>
+
+      <section class="sources"><div><p class="kicker">REFERENCE</p><h3>分析參考來源</h3></div><div id="sourcesList" class="source-list"></div></section>
+      <p id="disclaimer" class="disclaimer"></p>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
