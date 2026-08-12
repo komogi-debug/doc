@@ -44,20 +44,17 @@ function bullets(value) {
   return value.split(/\n(?=\s*[一二三四五六七八九十]+、|\s*\(?[一二三四五六七八九十]+\)?[、.)])/).map((part) => part.replace(/^\s*(?:[一二三四五六七八九十]+、|\(?[一二三四五六七八九十]+\)?[、.)])\s*/, "").trim()).filter(Boolean);
 }
 function makeReplies(type, subject, attachment) {
-  const subjectPhrase = (subject || "所詢事項").split(/[，,。；;]/)[0].trim();
-  const cleanAttachment = (attachment || "").replace(/[。；;]+$/, "");
-  const attachmentClause = cleanAttachment ? `，檢附${cleanAttachment}` : "";
   if (type.includes("資料填報") || type.includes("補件")) return [
-    { label: "已完成／同意回覆", text: `主旨：有關貴單位來函${subjectPhrase}一案，復如說明，請查照。\n說明：\n一、依來函辦理。\n二、本案資料業已整理完成${attachmentClause}。` },
-    { label: "尚待確認資料", text: `主旨：有關貴單位來函${subjectPhrase}一案，復如說明，請查照。\n說明：\n一、依來函辦理。\n二、本案刻正彙整相關資料，預計於○年○月○日前補送。` },
+    { label: "已完成／同意回覆", text: "主旨：復貴單位來函事項，請查照。\n說明：\n一、依來函辦理。\n二、資料如附件。" },
+    { label: "尚待確認資料", text: "主旨：復貴單位來函事項，請查照。\n說明：\n一、相關資料刻正整理中。\n二、完成後另函檢送。" },
   ];
   if (type.includes("會議")) return [
-    { label: "派員出席", text: `主旨：有關貴單位來函${subjectPhrase}一案，復如說明，請查照。\n說明：\n一、本機關派員○○○出席。\n二、相關資料依來函辦理。` },
-    { label: "無法出席／提供意見", text: `主旨：有關貴單位來函${subjectPhrase}一案，復如說明，請查照。\n說明：\n一、本機關因故無法派員出席。\n二、相關意見如附件，請參考。` },
+    { label: "派員出席", text: "主旨：復貴單位會議通知，請查照。\n說明：\n一、派員○○○出席。" },
+    { label: "無法出席／提供意見", text: "主旨：復貴單位會議通知，請查照。\n說明：\n一、因故無法派員出席，敬請見諒。" },
   ];
   return [
-    { label: "一般函復骨架", text: `主旨：有關貴單位來函${subjectPhrase}一案，復如說明，請查照。\n說明：\n一、依來函辦理。\n二、○○○。` },
-    { label: "請示主管後回覆", text: `主旨：有關貴單位來函${subjectPhrase}一案，復如說明，請查照。\n說明：\n一、業經洽詢相關承辦單位。\n二、本案俟核示後另函復。` },
+    { label: "一般函復骨架", text: "主旨：復貴單位來函事項，請查照。\n說明：\n一、依來函辦理。\n二、○○○。" },
+    { label: "請示主管後回覆", text: "主旨：復貴單位來函事項，請查照。\n說明：\n一、刻正洽詢中。\n二、俟核示後另函復。" },
   ];
 }
 function analyze(raw, context) {
